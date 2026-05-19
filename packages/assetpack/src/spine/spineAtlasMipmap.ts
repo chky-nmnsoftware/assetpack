@@ -37,9 +37,14 @@ export function spineAtlasMipmap(_options?: SpineOptions): AssetPipe<SpineOption
             // loop through each resolution and pack the images
             const assets = Object.values(resolutionHash).map((resolution) => {
                 const scale = resolution / largestResolution;
-                let resolutionLabel = options.template.replace('%%', resolution.toString());
+                let resolutionLabel = '';
 
-                resolutionLabel = resolution === 1 ? '' : resolutionLabel;
+                if (typeof options.template === 'function') {
+                    resolutionLabel = options.template(resolution);
+                } else {
+                    resolutionLabel = options.template.replace('%%', resolution.toString());
+                    resolutionLabel = resolution === 1 ? '' : resolutionLabel;
+                }
 
                 const outputName = asset.filename.replace(/(\.[\w\d_-]+)$/i, `${resolutionLabel}$1`);
 
