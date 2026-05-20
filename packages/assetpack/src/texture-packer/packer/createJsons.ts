@@ -67,7 +67,14 @@ export function createJsons(
         json.meta = {
             app: 'http://github.com/pixijs/assetpack',
             version: '1.0',
-            image: createName(options.textureName, i, bins.length !== 1, options.resolution, options.textureFormat, options.resolutionTemplate),
+            image: createName(
+                options.textureName,
+                i,
+                bins.length !== 1,
+                options.resolution,
+                options.textureFormat,
+                options.resolutionTemplate,
+            ),
             format: 'RGBA8888',
             size: {
                 w: width,
@@ -79,7 +86,14 @@ export function createJsons(
         };
 
         jsons.push({
-            name: createName(options.textureName, i, bins.length !== 1, options.resolution, 'json', options.resolutionTemplate),
+            name: createName(
+                options.textureName,
+                i,
+                bins.length !== 1,
+                options.resolution,
+                'json',
+                options.resolutionTemplate,
+            ),
             json,
         });
     }

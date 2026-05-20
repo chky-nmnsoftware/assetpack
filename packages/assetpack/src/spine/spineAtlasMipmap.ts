@@ -41,9 +41,8 @@ export function spineAtlasMipmap(_options?: SpineOptions): AssetPipe<SpineOption
 
                 if (typeof options.template === 'function') {
                     resolutionLabel = options.template(resolution);
-                } else {
+                } else if (resolution !== 1) {
                     resolutionLabel = options.template.replace('%%', resolution.toString());
-                    resolutionLabel = resolution === 1 ? '' : resolutionLabel;
                 }
 
                 const outputName = asset.filename.replace(/(\.[\w\d_-]+)$/i, `${resolutionLabel}$1`);

@@ -95,11 +95,11 @@ export function mipmap(defaultOptions: MipmapOptions = {}): AssetPipe<MipmapOpti
 
                 if (options) {
                     const template = (options as Required<MipmapOptions>).template;
+
                     if (typeof template === 'function') {
                         resolution = template(data.resolution);
-                    } else {
+                    } else if (data.resolution !== 1) {
                         resolution = template.replace('%%', `${data.resolution}`);
-                        resolution = data.resolution === 1 ? '' : resolution;
                     }
                 }
 
